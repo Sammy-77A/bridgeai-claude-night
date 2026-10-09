@@ -1267,6 +1267,358 @@
       40% { transform: scale(1.1); opacity: 1; }
     }
 
+    /* ----------------- HOW IT WORKS PAGE & BANNER STYLES ----------------- */
+    .how-it-works-banner {
+      background: linear-gradient(135deg, rgba(250, 204, 21, 0.08) 0%, rgba(34, 197, 94, 0.06) 100%);
+      border: 1px solid rgba(250, 204, 21, 0.3);
+      border-radius: var(--radius-lg);
+      padding: 18px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    }
+    .how-banner-content {
+      flex: 1;
+    }
+    .how-banner-tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: rgba(250, 204, 21, 0.2);
+      color: var(--accent-yellow);
+      padding: 4px 10px;
+      border-radius: 20px;
+      margin-bottom: 8px;
+    }
+    .how-banner-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+    .how-banner-desc {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      line-height: 1.5;
+      max-width: 800px;
+      margin: 0;
+    }
+    .how-banner-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--accent-yellow);
+      color: #000;
+      border: none;
+      padding: 12px 22px;
+      border-radius: var(--radius-md);
+      font-size: 14.5px;
+      font-weight: 800;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.15s ease;
+      box-shadow: 0 4px 14px rgba(250, 204, 21, 0.25);
+    }
+    .how-banner-cta:hover {
+      background: var(--accent-yellow-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(250, 204, 21, 0.35);
+    }
+    .btn-how-it-works-inline {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(250, 204, 21, 0.12);
+      border: 1px solid rgba(250, 204, 21, 0.35);
+      color: var(--accent-yellow);
+      border-radius: var(--radius-sm);
+      height: 36px;
+      padding: 0 14px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .btn-how-it-works-inline:hover {
+      background: rgba(250, 204, 21, 0.22);
+      border-color: var(--accent-yellow);
+      color: #fff;
+    }
+
+    /* How It Works Full Viewport Layout */
+    .how-page-container {
+      max-width: 1080px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+    .how-hero {
+      background: linear-gradient(180deg, #10192d 0%, #0d1424 100%);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 36px 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    .how-hero::after {
+      content: '';
+      position: absolute;
+      top: -60px;
+      right: -60px;
+      width: 240px;
+      height: 240px;
+      background: radial-gradient(circle, rgba(250, 204, 21, 0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .how-hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .how-badge {
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 20px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .how-badge-gold {
+      background: rgba(250, 204, 21, 0.15);
+      border: 1px solid rgba(250, 204, 21, 0.3);
+      color: var(--accent-yellow);
+    }
+    .how-badge-teal {
+      background: rgba(20, 184, 166, 0.15);
+      border: 1px solid rgba(20, 184, 166, 0.3);
+      color: var(--accent-teal);
+    }
+    .how-badge-green {
+      background: rgba(34, 197, 94, 0.15);
+      border: 1px solid rgba(34, 197, 94, 0.3);
+      color: var(--accent-green);
+    }
+    .how-hero h2 {
+      font-size: 28px;
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.3;
+      margin-bottom: 12px;
+    }
+    .how-hero p {
+      font-size: 15.5px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      max-width: 840px;
+    }
+
+    /* Pipeline 4-Step Cards */
+    .pipeline-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+    }
+    .pipeline-step-card {
+      background: #0f172a;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .pipeline-step-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(250, 204, 21, 0.4);
+    }
+    .step-number-pill {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(250, 204, 21, 0.15);
+      border: 1px solid var(--accent-yellow);
+      color: var(--accent-yellow);
+      font-weight: 900;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .step-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .step-desc {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    /* Analogy Showcase Section */
+    .analogy-showcase {
+      background: #0c1222;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 30px;
+    }
+    .analogy-showcase h3 {
+      font-size: 20px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+    .analogy-showcase p.sub {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 18px;
+    }
+    .comparison-card {
+      border-radius: var(--radius-md);
+      padding: 20px;
+      background: #080d1a;
+      border: 1px solid var(--border-subtle);
+    }
+    .comparison-card.bad {
+      border-top: 3px solid #ef4444;
+    }
+    .comparison-card.good {
+      border-top: 3px solid var(--accent-green);
+    }
+    .comparison-title {
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .comparison-card.bad .comparison-title { color: #f87171; }
+    .comparison-card.good .comparison-title { color: var(--accent-green); }
+    .comparison-snippet {
+      font-size: 14px;
+      color: #e2e8f0;
+      line-height: 1.6;
+      background: #0d1527;
+      padding: 14px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-subtle);
+    }
+
+    /* Pillars detailed section */
+    .features-deepdive-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 20px;
+    }
+    .feature-deepdive-card {
+      background: #0e1628;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 26px;
+    }
+    .feature-deepdive-card .f-icon {
+      font-size: 30px;
+      margin-bottom: 14px;
+    }
+    .feature-deepdive-card h4 {
+      font-size: 17px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+    .feature-deepdive-card p {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+    .feature-bullet-list {
+      margin-top: 14px;
+      padding-left: 20px;
+      color: var(--text-muted);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+    .feature-bullet-list li strong {
+      color: #fff;
+    }
+
+    /* How It Works CTA Bar */
+    .how-cta-strip {
+      background: linear-gradient(135deg, #131c31 0%, #0d1424 100%);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-lg);
+      padding: 28px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .how-cta-strip h3 {
+      font-size: 19px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+    .how-cta-strip p {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      margin: 0;
+    }
+    .how-cta-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .how-cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: var(--radius-md);
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: all 0.15s ease;
+    }
+    .how-cta-btn-primary {
+      background: var(--accent-yellow);
+      color: #000;
+    }
+    .how-cta-btn-primary:hover {
+      background: var(--accent-yellow-hover);
+    }
+    .how-cta-btn-secondary {
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+      border-color: var(--border-strong);
+    }
+    .how-cta-btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.14);
+    }
+
     /* Accessibility focus ring */
     button:focus-visible, input:focus-visible, textarea:focus-visible {
       outline: 3px solid var(--accent-yellow);
@@ -1312,6 +1664,11 @@
         <button class="nav-button" id="sidebar-btn-lessons" onclick="switchTab('lessons')">
           <span class="nav-button-icon">📋</span>
           <span>Quick Lessons</span>
+        </button>
+
+        <button class="nav-button" id="sidebar-btn-how-it-works" onclick="switchTab('how-it-works')">
+          <span class="nav-button-icon">💡</span>
+          <span>How It Works</span>
         </button>
       </nav>
     </div>
@@ -1409,6 +1766,21 @@
     <section class="tab-viewport active" id="viewport-learn">
       <div class="learn-layout">
 
+        <!-- How It Works Hero Banner on Homepage -->
+        <div class="how-it-works-banner">
+          <div class="how-banner-content">
+            <span class="how-banner-tag">💡 NEW TO BRIDGEAI?</span>
+            <div class="how-banner-title">Understand How BridgeAI Teaches You Safely</div>
+            <p class="how-banner-desc">
+              Discover how our beginner-friendly analogies, real-time scam verification, dynamic Groq AI models, and native voice audio work together to guide first-time smartphone users.
+            </p>
+          </div>
+          <button class="how-banner-cta" onclick="switchTab('how-it-works')">
+            <span>How It Works</span>
+            <span>➔</span>
+          </button>
+        </div>
+
         <!-- Onboarding Assessment (Shown initially or re-triggered) -->
         <div class="onboarding-card" id="onboardingBanner">
           <h3><span>👋</span> Welcome to BridgeAI! Let's tailor your learning</h3>
@@ -1444,9 +1816,14 @@
               <span class="dot-live"></span>
               <span><strong>BridgeAI Tutor:</strong> <span id="chatModeDescription">Beginner Mode (Simple words & everyday analogies)</span></span>
             </div>
-            <button class="btn-clear-chat" onclick="clearTutorChat()" style="height: 36px; padding: 0 12px; font-size: 13px;">
-              🗑️ Clear Chat
-            </button>
+            <div style="display: flex; gap: 8px; align-items: center;">
+              <button class="btn-how-it-works-inline" onclick="switchTab('how-it-works')">
+                💡 How It Works
+              </button>
+              <button class="btn-clear-chat" onclick="clearTutorChat()" style="height: 36px; padding: 0 12px; font-size: 13px;">
+                🗑️ Clear Chat
+              </button>
+            </div>
           </div>
 
           <!-- Chat Scrollable Message Stream -->
@@ -1825,6 +2202,179 @@
       </div>
     </section>
 
+    <!-- ---------------- TAB 5: HOW IT WORKS ---------------- -->
+    <section class="tab-viewport" id="viewport-how-it-works">
+      <div class="how-page-container">
+
+        <!-- Hero Card -->
+        <div class="how-hero">
+          <div class="how-hero-badges">
+            <span class="how-badge how-badge-gold">💡 Core Architecture</span>
+            <span class="how-badge how-badge-teal">⚡ Groq LPU Powered</span>
+            <span class="how-badge how-badge-green">🌍 Underserved Community Focus</span>
+          </div>
+          <h2>How BridgeAI Works</h2>
+          <p>
+            BridgeAI is purpose-built to break down the digital divide for first-time smartphone users in Africa, South Asia, and underserved communities. By combining adaptive analogies, real-time scam verification, high-speed Groq LPUs, and spoken voice outputs, complex tech concepts become as natural as everyday conversation.
+          </p>
+        </div>
+
+        <!-- 4-Step Interactive Pipeline -->
+        <div>
+          <div style="font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent-yellow); margin-bottom: 8px;">
+            The Learning Pipeline
+          </div>
+          <h3 style="font-size: 22px; font-weight: 800; color: #fff; margin-bottom: 20px;">
+            From Question to Mastery in 4 Steps
+          </h3>
+
+          <div class="pipeline-grid">
+            <!-- Step 1 -->
+            <div class="pipeline-step-card">
+              <div class="step-number-pill">1</div>
+              <div class="step-title"><span>🎯</span> Literacy Tuning</div>
+              <div class="step-desc">
+                Onboarding assesses whether you're brand new to smartphones. Beginner Mode strips away tech jargon, strictly limits sentence length, and replaces technical terms with real-world village and market analogies.
+              </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="pipeline-step-card">
+              <div class="step-number-pill">2</div>
+              <div class="step-title"><span>⚡</span> Live Groq LPUs</div>
+              <div class="step-desc">
+                When you ask a question, BridgeAI dynamically discovers active Groq chat models (like Llama-3) and generates answers with low-latency LPUs. No waiting, no timeouts, even on weak 2G/3G connections.
+              </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="pipeline-step-card">
+              <div class="step-number-pill">3</div>
+              <div class="step-title"><span>🚨</span> Scam Analysis</div>
+              <div class="step-desc">
+                Suspicious SMS, WhatsApp lottery wins, and fake job postings are analyzed by our structured threat detector. It extracts urgent pressure cues, suspicious links, and tells you directly: SAFE, SUSPICIOUS, or DANGEROUS.
+              </div>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="pipeline-step-card">
+              <div class="step-number-pill">4</div>
+              <div class="step-title"><span>🔊</span> Voice & Dialects</div>
+              <div class="step-desc">
+                Learners can switch instantly between English, Swahili, Hindi, French, and Nigerian Pidgin. Every AI tutor answer has a "🔊 Read Aloud" button for users who prefer listening over reading.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Analogy Showcase: Before vs After -->
+        <div class="analogy-showcase">
+          <h3>The Power of Everyday Analogies</h3>
+          <p class="sub">Here is the difference between standard confusing technical explanations and how BridgeAI speaks to first-time learners:</p>
+
+          <div class="comparison-grid">
+            <div class="comparison-card bad">
+              <div class="comparison-title">
+                <span>✕</span> Standard Tech Explanation
+              </div>
+              <div class="comparison-snippet">
+                "An OTP is a time-synchronized pseudo-random alphanumeric hash sent over SMS for two-factor cryptographic authorization."
+              </div>
+            </div>
+
+            <div class="comparison-card good">
+              <div class="comparison-title">
+                <span>✓</span> BridgeAI Beginner Analogy
+              </div>
+              <div class="comparison-snippet">
+                "Think of an OTP like a single-use key made of secret numbers. The bank sends it only to your phone. If anyone asks you for this key, NEVER give it to them—it lets them open your money box!"
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Deep Dive Pillars Grid -->
+        <div>
+          <div style="font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent-teal); margin-bottom: 8px;">
+            Technology & Protection
+          </div>
+          <h3 style="font-size: 22px; font-weight: 800; color: #fff; margin-bottom: 20px;">
+            Engineered for Accessibility & Security
+          </h3>
+
+          <div class="features-deepdive-grid">
+            <div class="feature-deepdive-card">
+              <div class="f-icon">🧠</div>
+              <h4>Adaptive Prompt Engineering</h4>
+              <p>
+                Our system prompt instructs the AI to enforce educational scaffolding: short answers, warm encouragement, checking for understanding after each concept, and prohibiting acronyms unless explained.
+              </p>
+              <ul class="feature-bullet-list">
+                <li><strong>Beginner Mode:</strong> Max 4 simple sentences, analogies to market stalls, locks, and letters.</li>
+                <li><strong>Intermediate Mode:</strong> Step-by-step guidance for forms, settings, and navigation.</li>
+              </ul>
+            </div>
+
+            <div class="feature-deepdive-card">
+              <div class="f-icon">🔒</div>
+              <h4>Direct Client-to-Groq Privacy</h4>
+              <p>
+                BridgeAI has no intermediary tracking server. Your Groq API key and chat queries go directly from your web browser to Groq's official API. Your data stays entirely in your own hands.
+              </p>
+              <ul class="feature-bullet-list">
+                <li><strong>Local Storage:</strong> Keys are saved strictly in your browser's private storage.</li>
+                <li><strong>Zero Data Selling:</strong> No analytics cookies, no tracking pixels, no ads.</li>
+              </ul>
+            </div>
+
+            <div class="feature-deepdive-card">
+              <div class="f-icon">🛡️</div>
+              <h4>Forensic Red-Flag Scoring</h4>
+              <p>
+                Scam messages frequently rely on manufactured panic ("Your bank account will be blocked in 1 hour!"). The Scam Detector identifies these psychological triggers and provides a 3-bullet action checklist.
+              </p>
+              <ul class="feature-bullet-list">
+                <li><strong>Urgency Detection:</strong> Flags artificial deadlines and threat language.</li>
+                <li><strong>Action Guidance:</strong> Immediate steps to take (e.g. block sender, do not click link).</li>
+              </ul>
+            </div>
+
+            <div class="feature-deepdive-card">
+              <div class="f-icon">📱</div>
+              <h4>Offline-Ready Core Lessons</h4>
+              <p>
+                When internet connection drops or API tokens run low, the "Quick Lessons" feature provides fully self-contained guides that work 100% offline with zero network calls required.
+              </p>
+              <ul class="feature-bullet-list">
+                <li><strong>Essential Guides:</strong> Mobile Money, Passwords, WhatsApp, and Online Job search.</li>
+                <li><strong>Always Accessible:</strong> Instant review even during network outages.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Action CTA Strip -->
+        <div class="how-cta-strip">
+          <div>
+            <h3>Ready to Explore BridgeAI?</h3>
+            <p>Start learning, test a suspicious message, or explore offline quick lessons right now.</p>
+          </div>
+          <div class="how-cta-actions">
+            <button class="how-cta-btn how-cta-btn-primary" onclick="switchTab('learn')">
+              🎓 Start Learning
+            </button>
+            <button class="how-cta-btn how-cta-btn-secondary" onclick="switchTab('scam')">
+              🚨 Check a Scam
+            </button>
+            <button class="how-cta-btn how-cta-btn-secondary" onclick="switchTab('lessons')">
+              📋 Quick Lessons
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
   </main>
 
 </div>
@@ -2196,7 +2746,8 @@ Always respond in ${STATE.currentLang}.`;
     learn: { title: "🎓 Learn Digital Skills", subtitle: "Interactive AI tutor for first-time smartphone and internet learners" },
     scam: { title: "🚨 Scam Detector", subtitle: "Analyze suspicious messages, links, and fake offers instantly" },
     languages: { title: "🌍 Language Toggle", subtitle: "Choose the language for AI responses and instructions" },
-    lessons: { title: "📋 Quick Lessons", subtitle: "Fundamental 5-step digital literacy guides (No AI needed)" }
+    lessons: { title: "📋 Quick Lessons", subtitle: "Fundamental 5-step digital literacy guides (No AI needed)" },
+    'how-it-works': { title: "💡 How It Works", subtitle: "How BridgeAI teaches digital literacy, detects fraud, and uses Groq LPUs" }
   };
 
   function switchTab(tabKey) {
