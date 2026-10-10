@@ -275,33 +275,232 @@
       gap: 12px;
     }
 
-    /* Quick Language Bar */
-    .lang-pills-bar {
-      display: flex;
-      background: var(--bg-surface);
-      border: 1px solid var(--border-subtle);
-      border-radius: 30px;
-      padding: 4px;
-      gap: 4px;
+    /* ----------------- SEARCHABLE LANGUAGE DROPDOWN (TOPBAR) ----------------- */
+    .lang-dropdown-wrapper {
+      position: relative;
+      display: inline-block;
     }
 
-    .lang-pill {
-      background: transparent;
+    .lang-dropdown-trigger {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-strong);
+      color: #fff;
+      padding: 7px 16px;
+      border-radius: 24px;
+      font-size: 13.5px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+    }
+    .lang-dropdown-trigger:hover, .lang-dropdown-wrapper.open .lang-dropdown-trigger {
+      border-color: var(--accent-yellow);
+      background: var(--bg-surface-hover);
+    }
+    .lang-trigger-globe {
+      font-size: 15px;
+    }
+    .lang-trigger-label {
+      max-width: 140px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: #fff;
+    }
+    .lang-trigger-caret {
+      font-size: 11px;
+      color: var(--accent-yellow);
+      transition: transform 0.2s ease;
+    }
+    .lang-dropdown-wrapper.open .lang-trigger-caret {
+      transform: rotate(180deg);
+    }
+
+    .lang-dropdown-menu {
+      position: absolute;
+      top: calc(100% + 8px);
+      right: 0;
+      width: 320px;
+      background: #0d1527;
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-md);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7);
+      z-index: 1200;
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+      animation: dropdownPop 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .lang-dropdown-wrapper.open .lang-dropdown-menu {
+      display: flex;
+    }
+
+    @keyframes dropdownPop {
+      from { opacity: 0; transform: translateY(-6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .lang-search-box {
+      padding: 12px;
+      background: #0a0f1c;
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      position: relative;
+    }
+    .lang-search-icon {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+    .lang-search-input {
+      flex: 1;
+      background: #141c30;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      color: #fff;
+      font-size: 13px;
+      padding: 8px 30px 8px 10px;
+      outline: none;
+      font-family: inherit;
+    }
+    .lang-search-input:focus {
+      border-color: var(--accent-yellow);
+    }
+    .lang-search-clear {
+      position: absolute;
+      right: 20px;
+      background: none;
       border: none;
       color: var(--text-muted);
-      font-size: 13px;
-      font-weight: 700;
+      cursor: pointer;
+      font-size: 12px;
+      padding: 4px;
+      display: none;
+    }
+    .lang-search-clear.visible {
+      display: block;
+    }
+    .lang-search-clear:hover {
+      color: #fff;
+    }
+
+    .lang-dropdown-meta {
       padding: 6px 14px;
+      font-size: 11.5px;
+      color: var(--text-muted);
+      background: #090e1b;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .lang-options-list {
+      max-height: 290px;
+      overflow-y: auto;
+      list-style: none;
+      margin: 0;
+      padding: 6px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .lang-options-list::-webkit-scrollbar {
+      width: 6px;
+    }
+    .lang-options-list::-webkit-scrollbar-track {
+      background: #0a0f1c;
+    }
+    .lang-options-list::-webkit-scrollbar-thumb {
+      background: #253352;
+      border-radius: 3px;
+    }
+
+    .lang-option-item {
+      padding: 9px 12px;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 13.5px;
+      color: #cbd5e1;
+      transition: background 0.1s ease, color 0.1s ease;
+    }
+    .lang-option-item:hover, .lang-option-item.focused {
+      background: #19243d;
+      color: #fff;
+    }
+    .lang-option-item.selected {
+      background: rgba(250, 204, 21, 0.14);
+      color: var(--accent-yellow);
+      font-weight: 700;
+    }
+    .lang-option-check {
+      font-size: 13px;
+      font-weight: 900;
+      color: var(--accent-yellow);
+      opacity: 0;
+    }
+    .lang-option-item.selected .lang-option-check {
+      opacity: 1;
+    }
+
+    .lang-no-results {
+      padding: 24px 16px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 13px;
+    }
+
+    /* ----------------- CHAT LANGUAGE BADGE BAR ----------------- */
+    .chat-lang-badge-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 14px;
+      background: #0b1122;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      margin-top: 10px;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .chat-lang-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: rgba(20, 184, 166, 0.12);
+      border: 1px solid rgba(20, 184, 166, 0.35);
+      color: var(--accent-teal);
+      padding: 4px 12px;
       border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
       cursor: pointer;
       transition: all 0.15s ease;
     }
-    .lang-pill:hover {
-      color: #fff;
+    .chat-lang-badge:hover {
+      background: rgba(20, 184, 166, 0.22);
+      border-color: var(--accent-teal);
     }
-    .lang-pill.active {
-      background: var(--accent-yellow);
-      color: #000;
+    .chat-lang-badge strong {
+      color: #fff;
+      font-weight: 800;
+    }
+    .chat-lang-badge-change {
+      font-size: 11.5px;
+      color: var(--accent-yellow);
+      margin-left: 4px;
+      text-decoration: underline;
+    }
+    .chat-lang-hint {
+      font-size: 12px;
+      color: var(--text-muted);
     }
 
     .mode-toggle-btn {
@@ -904,90 +1103,144 @@
       margin: 10px 0 10px 24px;
     }
 
-    /* ----------------- TAB 3: LANGUAGES ----------------- */
-    .lang-layout {
-      max-width: 900px;
+    /* ----------------- TAB 3: LANGUAGES (FULL VIEW SELECTOR) ----------------- */
+    .lang-view-container {
+      max-width: 960px;
       width: 100%;
       margin: 0 auto;
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 24px;
     }
-
-    .lang-intro-card {
-      background: var(--bg-surface);
+    .lang-view-header-card {
+      background: linear-gradient(135deg, #10192e 0%, #0d1424 100%);
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-lg);
-      padding: 24px;
+      padding: 28px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
     }
-    .lang-intro-card h3 {
-      font-size: 22px;
-      color: var(--accent-yellow);
+    .lang-view-header-text h3 {
+      font-size: 24px;
+      font-weight: 800;
+      color: #fff;
       margin-bottom: 6px;
     }
-    .lang-intro-card p {
-      color: var(--text-secondary);
+    .lang-view-header-text p {
+      font-size: 14.5px;
+      color: var(--text-muted);
+      margin: 0;
+    }
+    .lang-view-active-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(250, 204, 21, 0.12);
+      border: 1px solid rgba(250, 204, 21, 0.35);
+      padding: 10px 20px;
+      border-radius: 30px;
+      color: var(--accent-yellow);
       font-size: 15px;
+      font-weight: 700;
     }
 
-    .lang-cards-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-    }
-
-    .lang-tile {
+    .lang-view-search-bar {
       background: var(--bg-surface);
       border: 2px solid var(--border-subtle);
       border-radius: var(--radius-md);
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: border-color 0.2s;
+    }
+    .lang-view-search-bar:focus-within {
+      border-color: var(--accent-yellow);
+    }
+    .lang-view-search-input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      color: #fff;
+      font-size: 16px;
+      outline: none;
+      font-family: inherit;
+    }
+    .lang-view-search-clear {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 14px;
+      padding: 4px;
+      display: none;
+    }
+    .lang-view-search-clear.visible {
+      display: block;
+    }
+    .lang-view-search-clear:hover {
+      color: #fff;
+    }
+
+    .lang-view-grid-scroll {
+      background: #090e1b;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
       padding: 20px;
+      max-height: 480px;
+      overflow-y: auto;
+    }
+    .lang-view-grid-scroll::-webkit-scrollbar {
+      width: 8px;
+    }
+    .lang-view-grid-scroll::-webkit-scrollbar-track {
+      background: #070b14;
+    }
+    .lang-view-grid-scroll::-webkit-scrollbar-thumb {
+      background: #1e293b;
+      border-radius: 4px;
+    }
+
+    .lang-view-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+      gap: 10px;
+    }
+    .lang-view-tile {
+      background: #0f172a;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 12px 16px;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      transition: all 0.2s ease;
-    }
-    .lang-tile:hover {
-      border-color: var(--accent-yellow);
-      background: var(--bg-surface-hover);
-    }
-    .lang-tile.active {
-      border-color: var(--accent-yellow);
-      background: #1f2334;
-      box-shadow: 0 4px 18px rgba(250, 204, 21, 0.15);
-    }
-
-    .lang-tile-left {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-    .lang-tile-flag {
-      font-size: 36px;
-    }
-    .lang-tile-text h4 {
-      font-size: 18px;
-      color: #fff;
-    }
-    .lang-tile-text p {
-      font-size: 13.5px;
-      color: var(--text-muted);
-    }
-    .lang-tile-check {
-      width: 26px;
-      height: 26px;
-      border-radius: 50%;
-      border: 2px solid var(--border-strong);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 900;
+      transition: all 0.15s ease;
+      color: #e2e8f0;
       font-size: 14px;
     }
-    .lang-tile.active .lang-tile-check {
-      background: var(--accent-yellow);
+    .lang-view-tile:hover {
+      background: #19253d;
       border-color: var(--accent-yellow);
-      color: #000;
+      color: #fff;
+      transform: translateY(-1px);
+    }
+    .lang-view-tile.active {
+      background: rgba(250, 204, 21, 0.15);
+      border-color: var(--accent-yellow);
+      color: var(--accent-yellow);
+      font-weight: 800;
+    }
+    .lang-view-tile-check {
+      font-weight: 900;
+      color: var(--accent-yellow);
+      opacity: 0;
+    }
+    .lang-view-tile.active .lang-view-tile-check {
+      opacity: 1;
     }
 
     /* ----------------- TAB 4: QUICK LESSONS ----------------- */
@@ -1718,13 +1971,35 @@
       </div>
 
       <div class="topbar-actions">
-        <!-- Quick Language Pills -->
-        <div class="lang-pills-bar" id="quickLangPills">
-          <button class="lang-pill active" onclick="setLanguage('English', 'en')">English</button>
-          <button class="lang-pill" onclick="setLanguage('Swahili', 'sw')">Kiswahili</button>
-          <button class="lang-pill" onclick="setLanguage('Hindi', 'hi')">हिन्दी</button>
-          <button class="lang-pill" onclick="setLanguage('French', 'fr')">Français</button>
-          <button class="lang-pill" onclick="setLanguage('Pidgin', 'pcm')">Pidgin</button>
+        <!-- Searchable World Languages Dropdown (~180 Languages) -->
+        <div class="lang-dropdown-wrapper" id="langDropdownWrapper">
+          <button type="button" class="lang-dropdown-trigger" id="langDropdownTrigger" onclick="toggleLangDropdown(event)" aria-haspopup="listbox" aria-expanded="false" title="Click to choose from ~180 world languages">
+            <span class="lang-trigger-globe">🌍</span>
+            <span class="lang-trigger-label" id="topbarLangLabel">English</span>
+            <span class="lang-trigger-caret">▾</span>
+          </button>
+
+          <div class="lang-dropdown-menu" id="langDropdownMenu" role="listbox" onclick="event.stopPropagation()">
+            <div class="lang-search-box">
+              <span class="lang-search-icon">🔍</span>
+              <input 
+                type="text" 
+                class="lang-search-input" 
+                id="langSearchInput" 
+                placeholder="Search ~180 languages..." 
+                oninput="handleDropdownFilter(this.value)"
+                autocomplete="off"
+              />
+              <button type="button" class="lang-search-clear" id="langSearchClearBtn" onclick="clearDropdownFilter(event)">✕</button>
+            </div>
+            <div class="lang-dropdown-meta">
+              <span id="langDropdownStats">180+ languages</span>
+              <span style="color: var(--accent-teal);">Instant switch</span>
+            </div>
+            <ul class="lang-options-list" id="langOptionsList">
+              <!-- Dynamically populated -->
+            </ul>
+          </div>
         </div>
 
         <!-- Mode Toggle Pill -->
@@ -1841,6 +2116,16 @@
             <button class="topic-chip" onclick="askPresetQuestion('How do I apply for jobs online safely without being tricked?')">💼 Finding Jobs Online</button>
           </div>
 
+          <!-- Chat Language Indicator Badge -->
+          <div class="chat-lang-badge-bar">
+            <div class="chat-lang-badge" id="chatActiveLangBadge" onclick="openLangDropdownFromBadge(event)" title="Click to change language">
+              <span>🌍</span>
+              <span>Responding in: <strong id="chatLangBadgeText">English</strong></span>
+              <span class="chat-lang-badge-change">Change ▾</span>
+            </div>
+            <div class="chat-lang-hint">Always responding strictly in your chosen language</div>
+          </div>
+
           <!-- Chat Input Bar -->
           <div class="chat-composer">
             <input 
@@ -1928,75 +2213,51 @@
 
     <!-- ---------------- TAB 3: LANGUAGES ---------------- -->
     <section class="tab-viewport" id="viewport-languages">
-      <div class="lang-layout">
+      <div class="lang-view-container">
 
-        <div class="lang-intro-card">
-          <h3>🌍 Select Your Preferred Language</h3>
-          <p>BridgeAI will explain concepts and answer all digital literacy and scam questions in your chosen tongue.</p>
+        <div class="lang-view-header-card">
+          <div class="lang-view-header-text">
+            <h3>🌍 Choose from ~180 World Languages</h3>
+            <p>Every explanation, tutorial, and scam detection analysis will be delivered strictly in your selected language.</p>
+          </div>
+          <div class="lang-view-active-badge">
+            <span>Active:</span>
+            <strong id="langViewActiveName">English</strong>
+          </div>
         </div>
 
-        <div class="lang-cards-grid">
-          
-          <div class="lang-tile active" id="lang-tile-English" onclick="selectLanguageCard('English', 'en')">
-            <div class="lang-tile-left">
-              <div class="lang-tile-flag">🇬🇧</div>
-              <div class="lang-tile-text">
-                <h4>English</h4>
-                <p>Standard clear & simple English</p>
-              </div>
-            </div>
-            <div class="lang-tile-check">✓</div>
-          </div>
-
-          <div class="lang-tile" id="lang-tile-Swahili" onclick="selectLanguageCard('Swahili', 'sw')">
-            <div class="lang-tile-left">
-              <div class="lang-tile-flag">🇰🇪</div>
-              <div class="lang-tile-text">
-                <h4>Kiswahili (Swahili)</h4>
-                <p>Lugha rahisi inayoeleweka Afrika Mashariki</p>
-              </div>
-            </div>
-            <div class="lang-tile-check"></div>
-          </div>
-
-          <div class="lang-tile" id="lang-tile-Hindi" onclick="selectLanguageCard('Hindi', 'hi')">
-            <div class="lang-tile-left">
-              <div class="lang-tile-flag">🇮🇳</div>
-              <div class="lang-tile-text">
-                <h4>हिन्दी (Hindi)</h4>
-                <p>दक्षिण एशिया के लिए सरल और स्पष्ट भाषा</p>
-              </div>
-            </div>
-            <div class="lang-tile-check"></div>
-          </div>
-
-          <div class="lang-tile" id="lang-tile-French" onclick="selectLanguageCard('French', 'fr')">
-            <div class="lang-tile-left">
-              <div class="lang-tile-flag">🇨🇩</div>
-              <div class="lang-tile-text">
-                <h4>Français (French)</h4>
-                <p>Français simple pour l'Afrique francophone</p>
-              </div>
-            </div>
-            <div class="lang-tile-check"></div>
-          </div>
-
-          <div class="lang-tile" id="lang-tile-Pidgin" onclick="selectLanguageCard('Pidgin', 'pcm')">
-            <div class="lang-tile-left">
-              <div class="lang-tile-flag">🇳🇬</div>
-              <div class="lang-tile-text">
-                <h4>West African Pidgin (Naija)</h4>
-                <p>Everyday street language wey dey sweet and easy</p>
-              </div>
-            </div>
-            <div class="lang-tile-check"></div>
-          </div>
-
+        <!-- Search Bar with Real-time Filter -->
+        <div class="lang-view-search-bar">
+          <span style="font-size: 18px; color: var(--accent-yellow);">🔍</span>
+          <input 
+            type="text" 
+            class="lang-view-search-input" 
+            id="langViewSearchInput" 
+            placeholder="Type language name to filter (e.g. Swahili, Hindi, Yoruba, Spanish, Arabic)..."
+            oninput="handleViewFilter(this.value)"
+            autocomplete="off"
+          />
+          <button type="button" class="lang-view-search-clear" id="langViewSearchClearBtn" onclick="clearViewFilter()">✕</button>
         </div>
 
-        <button class="btn-send" onclick="switchTab('learn')" style="align-self: flex-start; height: 48px;">
-          ✓ Save Language & Continue Learning
-        </button>
+        <div style="display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: var(--text-muted); padding: 0 4px;">
+          <span id="langViewCounter">Showing 184 languages</span>
+          <span>Click any language to switch immediately</span>
+        </div>
+
+        <!-- Scrollable Grid of All ~180 Languages -->
+        <div class="lang-view-grid-scroll">
+          <div class="lang-view-grid" id="langViewGrid">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 14px; align-items: center; margin-top: 4px;">
+          <button class="btn-send" onclick="switchTab('learn')" style="height: 48px; font-size: 15px;">
+            <span>✓ Start Learning in</span>
+            <strong id="langViewBtnTargetLang">English</strong>
+          </button>
+        </div>
 
       </div>
     </section>
@@ -2454,6 +2715,213 @@
   };
 
   /* ----------------------------------------------------
+     WORLD LANGUAGES REGISTRY (~180 Languages)
+     ---------------------------------------------------- */
+  const WORLD_LANGUAGES = [
+    { label: "English", value: "English" },
+    { label: "Swahili", value: "Swahili" },
+    { label: "Hindi", value: "Hindi" },
+    { label: "French", value: "French" },
+    { label: "Arabic", value: "Arabic" },
+    { label: "Portuguese", value: "Portuguese" },
+    { label: "Spanish", value: "Spanish" },
+    { label: "Mandarin Chinese", value: "Mandarin Chinese" },
+    { label: "Cantonese", value: "Cantonese" },
+    { label: "Bengali", value: "Bengali" },
+    { label: "Urdu", value: "Urdu" },
+    { label: "Punjabi", value: "Punjabi" },
+    { label: "Hausa", value: "Hausa" },
+    { label: "Yoruba", value: "Yoruba" },
+    { label: "Igbo", value: "Igbo" },
+    { label: "Amharic", value: "Amharic" },
+    { label: "Somali", value: "Somali" },
+    { label: "Zulu", value: "Zulu" },
+    { label: "Xhosa", value: "Xhosa" },
+    { label: "Shona", value: "Shona" },
+    { label: "Kinyarwanda", value: "Kinyarwanda" },
+    { label: "Luganda", value: "Luganda" },
+    { label: "Tigrinya", value: "Tigrinya" },
+    { label: "Oromo", value: "Oromo" },
+    { label: "Wolof", value: "Wolof" },
+    { label: "Twi", value: "Twi" },
+    { label: "Lingala", value: "Lingala" },
+    { label: "Kikuyu", value: "Kikuyu" },
+    { label: "Dholuo", value: "Dholuo" },
+    { label: "Chichewa", value: "Chichewa" },
+    { label: "Tswana", value: "Tswana" },
+    { label: "Sesotho", value: "Sesotho" },
+    { label: "Ndebele", value: "Ndebele" },
+    { label: "Afrikaans", value: "Afrikaans" },
+    { label: "Malagasy", value: "Malagasy" },
+    { label: "Malay", value: "Malay" },
+    { label: "Indonesian", value: "Indonesian" },
+    { label: "Tagalog", value: "Tagalog" },
+    { label: "Vietnamese", value: "Vietnamese" },
+    { label: "Thai", value: "Thai" },
+    { label: "Burmese", value: "Burmese" },
+    { label: "Khmer", value: "Khmer" },
+    { label: "Lao", value: "Lao" },
+    { label: "Sinhalese", value: "Sinhalese" },
+    { label: "Tamil", value: "Tamil" },
+    { label: "Telugu", value: "Telugu" },
+    { label: "Kannada", value: "Kannada" },
+    { label: "Malayalam", value: "Malayalam" },
+    { label: "Marathi", value: "Marathi" },
+    { label: "Gujarati", value: "Gujarati" },
+    { label: "Odia", value: "Odia" },
+    { label: "Nepali", value: "Nepali" },
+    { label: "Dzongkha", value: "Dzongkha" },
+    { label: "Tibetan", value: "Tibetan" },
+    { label: "Mongolian", value: "Mongolian" },
+    { label: "Kazakh", value: "Kazakh" },
+    { label: "Uzbek", value: "Uzbek" },
+    { label: "Turkmen", value: "Turkmen" },
+    { label: "Kyrgyz", value: "Kyrgyz" },
+    { label: "Tajik", value: "Tajik" },
+    { label: "Azerbaijani", value: "Azerbaijani" },
+    { label: "Georgian", value: "Georgian" },
+    { label: "Armenian", value: "Armenian" },
+    { label: "Hebrew", value: "Hebrew" },
+    { label: "Persian", value: "Persian" },
+    { label: "Pashto", value: "Pashto" },
+    { label: "Kurdish", value: "Kurdish" },
+    { label: "Turkish", value: "Turkish" },
+    { label: "Greek", value: "Greek" },
+    { label: "Albanian", value: "Albanian" },
+    { label: "Serbian", value: "Serbian" },
+    { label: "Croatian", value: "Croatian" },
+    { label: "Bosnian", value: "Bosnian" },
+    { label: "Macedonian", value: "Macedonian" },
+    { label: "Bulgarian", value: "Bulgarian" },
+    { label: "Romanian", value: "Romanian" },
+    { label: "Ukrainian", value: "Ukrainian" },
+    { label: "Polish", value: "Polish" },
+    { label: "Czech", value: "Czech" },
+    { label: "Slovak", value: "Slovak" },
+    { label: "Hungarian", value: "Hungarian" },
+    { label: "Finnish", value: "Finnish" },
+    { label: "Estonian", value: "Estonian" },
+    { label: "Latvian", value: "Latvian" },
+    { label: "Lithuanian", value: "Lithuanian" },
+    { label: "Slovenian", value: "Slovenian" },
+    { label: "Maltese", value: "Maltese" },
+    { label: "Catalan", value: "Catalan" },
+    { label: "Galician", value: "Galician" },
+    { label: "Basque", value: "Basque" },
+    { label: "Welsh", value: "Welsh" },
+    { label: "Irish", value: "Irish" },
+    { label: "Scottish Gaelic", value: "Scottish Gaelic" },
+    { label: "Icelandic", value: "Icelandic" },
+    { label: "Norwegian", value: "Norwegian" },
+    { label: "Swedish", value: "Swedish" },
+    { label: "Danish", value: "Danish" },
+    { label: "Dutch", value: "Dutch" },
+    { label: "German", value: "German" },
+    { label: "Italian", value: "Italian" },
+    { label: "Russian", value: "Russian" },
+    { label: "Japanese", value: "Japanese" },
+    { label: "Korean", value: "Korean" },
+    { label: "Nigerian Pidgin", value: "Nigerian Pidgin" },
+    { label: "Tok Pisin", value: "Tok Pisin" },
+    { label: "Haitian Creole", value: "Haitian Creole" },
+    { label: "Jamaican Patois", value: "Jamaican Patois" },
+    { label: "Scots", value: "Scots" },
+    { label: "Luxembourgish", value: "Luxembourgish" },
+    { label: "Faroese", value: "Faroese" },
+    { label: "Occitan", value: "Occitan" },
+    { label: "Breton", value: "Breton" },
+    { label: "Corsican", value: "Corsican" },
+    { label: "Sardinian", value: "Sardinian" },
+    { label: "Sicilian", value: "Sicilian" },
+    { label: "Romansh", value: "Romansh" },
+    { label: "Frisian", value: "Frisian" },
+    { label: "Yiddish", value: "Yiddish" },
+    { label: "Esperanto", value: "Esperanto" },
+    // Additional world languages to complete ~180:
+    { label: "Assamese", value: "Assamese" },
+    { label: "Sindhi", value: "Sindhi" },
+    { label: "Balochi", value: "Balochi" },
+    { label: "Kashmiri", value: "Kashmiri" },
+    { label: "Dogri", value: "Dogri" },
+    { label: "Maithili", value: "Maithili" },
+    { label: "Bhojpuri", value: "Bhojpuri" },
+    { label: "Magahi", value: "Magahi" },
+    { label: "Awadhi", value: "Awadhi" },
+    { label: "Marwari", value: "Marwari" },
+    { label: "Rajasthani", value: "Rajasthani" },
+    { label: "Haryanvi", value: "Haryanvi" },
+    { label: "Chhattisgarhi", value: "Chhattisgarhi" },
+    { label: "Konkani", value: "Konkani" },
+    { label: "Manipuri (Meitei)", value: "Manipuri (Meitei)" },
+    { label: "Bodo", value: "Bodo" },
+    { label: "Santali", value: "Santali" },
+    { label: "Sanskrit", value: "Sanskrit" },
+    { label: "Newari", value: "Newari" },
+    { label: "Rohingya", value: "Rohingya" },
+    { label: "Shan", value: "Shan" },
+    { label: "Karen", value: "Karen" },
+    { label: "Mon", value: "Mon" },
+    { label: "Sundanese", value: "Sundanese" },
+    { label: "Javanese", value: "Javanese" },
+    { label: "Madurese", value: "Madurese" },
+    { label: "Balinese", value: "Balinese" },
+    { label: "Minangkabau", value: "Minangkabau" },
+    { label: "Buginese", value: "Buginese" },
+    { label: "Acehnese", value: "Acehnese" },
+    { label: "Banjar", value: "Banjar" },
+    { label: "Cebuano", value: "Cebuano" },
+    { label: "Ilocano", value: "Ilocano" },
+    { label: "Hiligaynon", value: "Hiligaynon" },
+    { label: "Waray", value: "Waray" },
+    { label: "Kapampangan", value: "Kapampangan" },
+    { label: "Pangasinan", value: "Pangasinan" },
+    { label: "Fijian", value: "Fijian" },
+    { label: "Samoan", value: "Samoan" },
+    { label: "Tongan", value: "Tongan" },
+    { label: "Maori", value: "Maori" },
+    { label: "Hawaiian", value: "Hawaiian" },
+    { label: "Marshallese", value: "Marshallese" },
+    { label: "Chamorro", value: "Chamorro" },
+    { label: "Kiribati", value: "Kiribati" },
+    { label: "Tetum", value: "Tetum" },
+    { label: "Guaraní", value: "Guaraní" },
+    { label: "Quechua", value: "Quechua" },
+    { label: "Aymara", value: "Aymara" },
+    { label: "Nahuatl", value: "Nahuatl" },
+    { label: "Maya", value: "Maya" },
+    { label: "Mapudungun", value: "Mapudungun" },
+    { label: "Wayuu", value: "Wayuu" },
+    { label: "Zapotec", value: "Zapotec" },
+    { label: "Mixtec", value: "Mixtec" },
+    { label: "Otomi", value: "Otomi" },
+    { label: "Navajo", value: "Navajo" },
+    { label: "Cherokee", value: "Cherokee" },
+    { label: "Inuktitut", value: "Inuktitut" },
+    { label: "Greenlandic", value: "Greenlandic" },
+    { label: "Kirundi", value: "Kirundi" },
+    { label: "Kamba", value: "Kamba" },
+    { label: "Luhya", value: "Luhya" },
+    { label: "Kalenjin", value: "Kalenjin" },
+    { label: "Gusii", value: "Gusii" },
+    { label: "Meru", value: "Meru" },
+    { label: "Maasai", value: "Maasai" },
+    { label: "Mandinka", value: "Mandinka" },
+    { label: "Bambara", value: "Bambara" },
+    { label: "Fula", value: "Fula" },
+    { label: "Akan", value: "Akan" },
+    { label: "Ewe", value: "Ewe" },
+    { label: "Fon", value: "Fon" },
+    { label: "Kanuri", value: "Kanuri" },
+    { label: "Tiv", value: "Tiv" },
+    { label: "Edo", value: "Edo" },
+    { label: "Urhobo", value: "Urhobo" },
+    { label: "Efik", value: "Efik" },
+    { label: "Ibibio", value: "Ibibio" },
+    { label: "Sango", value: "Sango" },
+    { label: "Latin", value: "Latin" }
+  ];
+
+  /* ----------------------------------------------------
      DYNAMIC GROQ MODEL DISCOVERY
      Calls https://api.groq.com/openai/v1/models
      ---------------------------------------------------- */
@@ -2553,6 +3021,20 @@
 
     // Initial greeting in chat
     initChatWelcomeGreeting();
+
+    // Global listener to close dropdown on outside click or Escape
+    document.addEventListener('click', (e) => {
+      const wrapper = document.getElementById('langDropdownWrapper');
+      if (wrapper && !wrapper.contains(e.target)) {
+        closeLangDropdown();
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeLangDropdown();
+      }
+    });
   });
 
   /* ----------------------------------------------------
@@ -2722,8 +3204,13 @@
   }
 
   /* ----------------------------------------------------
-     SYSTEM PROMPTS
+     SYSTEM PROMPTS & LANGUAGE INJECTION
      ---------------------------------------------------- */
+  function getLanguagePromptInstruction() {
+    const lang = STATE.currentLang || 'English';
+    return `Always respond in ${lang}. If you do not know a word in ${lang}, use the closest equivalent. Never switch to another language mid-response.`;
+  }
+
   function getTutorSystemPrompt() {
     const levelPrompt = STATE.userLevel === 'BEGINNER'
       ? "MODE: BEGINNER. Use very simple words, short sentences, and everyday analogies to life in rural or urban Africa and South Asia (marketplaces, farming, buses, family). Never use jargon without explaining it immediately."
@@ -2731,12 +3218,12 @@
 
     return `You are BridgeAI, a friendly digital literacy tutor for people who are new to smartphones and the internet. Teach in extremely simple language. Use real-life analogies. Topics include: using email, staying safe online, using mobile money (M-Pesa etc), applying for jobs online, spotting fake news, using WhatsApp. Always be encouraging. Never use jargon without explaining it.
 ${levelPrompt}
-Always respond in ${STATE.currentLang}.`;
+${getLanguagePromptInstruction()}`;
   }
 
   function getScamSystemPrompt() {
     return `You are a scam detection assistant for people new to the internet. Analyse the message and explain in very simple language whether it is a scam, what the warning signs are, and exactly what the person should do. Be clear and reassuring.
-Always respond in ${STATE.currentLang}.`;
+${getLanguagePromptInstruction()}`;
   }
 
   /* ----------------------------------------------------
@@ -2745,7 +3232,7 @@ Always respond in ${STATE.currentLang}.`;
   const VIEW_TITLES = {
     learn: { title: "🎓 Learn Digital Skills", subtitle: "Interactive AI tutor for first-time smartphone and internet learners" },
     scam: { title: "🚨 Scam Detector", subtitle: "Analyze suspicious messages, links, and fake offers instantly" },
-    languages: { title: "🌍 Language Toggle", subtitle: "Choose the language for AI responses and instructions" },
+    languages: { title: "🌍 Language Toggle", subtitle: "Choose from ~180 world languages for AI tutoring & scam detection" },
     lessons: { title: "📋 Quick Lessons", subtitle: "Fundamental 5-step digital literacy guides (No AI needed)" },
     'how-it-works': { title: "💡 How It Works", subtitle: "How BridgeAI teaches digital literacy, detects fraud, and uses Groq LPUs" }
   };
@@ -2767,6 +3254,11 @@ Always respond in ${STATE.currentLang}.`;
     const meta = VIEW_TITLES[tabKey] || VIEW_TITLES.learn;
     document.getElementById('topbarViewTitle').innerText = meta.title;
     document.getElementById('topbarViewSubtitle').innerText = meta.subtitle;
+
+    // Refresh view options if switching to languages tab
+    if (tabKey === 'languages') {
+      renderViewOptions(activeViewFilter);
+    }
 
     window.scrollTo({ top: 0, behavior: 'instant' });
   }
@@ -2819,48 +3311,195 @@ Always respond in ${STATE.currentLang}.`;
   }
 
   /* ----------------------------------------------------
-     LANGUAGE TOGGLE LOGIC
+     SEARCHABLE WORLD LANGUAGES SYSTEM (~180 LANGUAGES)
      ---------------------------------------------------- */
-  function setLanguage(langName, langCode) {
+  let activeDropdownFilter = '';
+  let activeViewFilter = '';
+
+  function renderDropdownOptions(filter = '') {
+    const listElem = document.getElementById('langOptionsList');
+    const statsElem = document.getElementById('langDropdownStats');
+    if (!listElem) return;
+
+    const query = filter.trim().toLowerCase();
+    const filtered = WORLD_LANGUAGES.filter(item => 
+      !query || item.label.toLowerCase().includes(query)
+    );
+
+    if (statsElem) {
+      statsElem.innerText = query ? `${filtered.length} matching` : `${WORLD_LANGUAGES.length} languages`;
+    }
+
+    if (filtered.length === 0) {
+      listElem.innerHTML = `<li class="lang-no-results">No language found for "${filter.replace(/</g, '&lt;')}"</li>`;
+      return;
+    }
+
+    listElem.innerHTML = filtered.map(item => {
+      const isSelected = item.value === STATE.currentLang;
+      return `
+        <li class="lang-option-item ${isSelected ? 'selected' : ''}" 
+            role="option" 
+            aria-selected="${isSelected}"
+            onclick="setLanguage('${item.value}'); closeLangDropdown();">
+          <span>${item.label}</span>
+          <span class="lang-option-check">✓</span>
+        </li>
+      `;
+    }).join('');
+  }
+
+  function renderViewOptions(filter = '') {
+    const gridElem = document.getElementById('langViewGrid');
+    const counterElem = document.getElementById('langViewCounter');
+    if (!gridElem) return;
+
+    const query = filter.trim().toLowerCase();
+    const filtered = WORLD_LANGUAGES.filter(item => 
+      !query || item.label.toLowerCase().includes(query)
+    );
+
+    if (counterElem) {
+      counterElem.innerText = query 
+        ? `Showing ${filtered.length} of ${WORLD_LANGUAGES.length} languages` 
+        : `Showing all ${WORLD_LANGUAGES.length} languages`;
+    }
+
+    if (filtered.length === 0) {
+      gridElem.innerHTML = `<div style="grid-column: 1 / -1; padding: 30px; text-align: center; color: var(--text-muted);">No language found matching "${filter.replace(/</g, '&lt;')}".</div>`;
+      return;
+    }
+
+    gridElem.innerHTML = filtered.map(item => {
+      const isSelected = item.value === STATE.currentLang;
+      return `
+        <div class="lang-view-tile ${isSelected ? 'active' : ''}" 
+             onclick="setLanguage('${item.value}')">
+          <span>${item.label}</span>
+          <span class="lang-view-tile-check">✓</span>
+        </div>
+      `;
+    }).join('');
+  }
+
+  function toggleLangDropdown(e) {
+    if (e) e.stopPropagation();
+    const wrapper = document.getElementById('langDropdownWrapper');
+    if (!wrapper) return;
+    const isOpen = wrapper.classList.contains('open');
+    if (isOpen) {
+      closeLangDropdown();
+    } else {
+      openLangDropdown();
+    }
+  }
+
+  function openLangDropdown() {
+    const wrapper = document.getElementById('langDropdownWrapper');
+    const trigger = document.getElementById('langDropdownTrigger');
+    const searchInput = document.getElementById('langSearchInput');
+    if (!wrapper) return;
+
+    wrapper.classList.add('open');
+    if (trigger) trigger.setAttribute('aria-expanded', 'true');
+    renderDropdownOptions(activeDropdownFilter);
+
+    if (searchInput) {
+      setTimeout(() => {
+        searchInput.focus();
+        if (activeDropdownFilter) searchInput.select();
+      }, 50);
+    }
+  }
+
+  function closeLangDropdown() {
+    const wrapper = document.getElementById('langDropdownWrapper');
+    const trigger = document.getElementById('langDropdownTrigger');
+    if (!wrapper) return;
+    wrapper.classList.remove('open');
+    if (trigger) trigger.setAttribute('aria-expanded', 'false');
+  }
+
+  function openLangDropdownFromBadge(e) {
+    if (e) e.stopPropagation();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    openLangDropdown();
+  }
+
+  function handleDropdownFilter(val) {
+    activeDropdownFilter = val;
+    const clearBtn = document.getElementById('langSearchClearBtn');
+    if (clearBtn) clearBtn.classList.toggle('visible', !!val);
+    renderDropdownOptions(val);
+  }
+
+  function clearDropdownFilter(e) {
+    if (e) e.stopPropagation();
+    activeDropdownFilter = '';
+    const input = document.getElementById('langSearchInput');
+    if (input) {
+      input.value = '';
+      input.focus();
+    }
+    const clearBtn = document.getElementById('langSearchClearBtn');
+    if (clearBtn) clearBtn.classList.remove('visible');
+    renderDropdownOptions('');
+  }
+
+  function handleViewFilter(val) {
+    activeViewFilter = val;
+    const clearBtn = document.getElementById('langViewSearchClearBtn');
+    if (clearBtn) clearBtn.classList.toggle('visible', !!val);
+    renderViewOptions(val);
+  }
+
+  function clearViewFilter() {
+    activeViewFilter = '';
+    const input = document.getElementById('langViewSearchInput');
+    if (input) {
+      input.value = '';
+      input.focus();
+    }
+    const clearBtn = document.getElementById('langViewSearchClearBtn');
+    if (clearBtn) clearBtn.classList.remove('visible');
+    renderViewOptions('');
+  }
+
+  function setLanguage(langName) {
+    if (!langName) return;
     STATE.currentLang = langName;
-    STATE.langCode = langCode;
     localStorage.setItem('bridge_lang_name', langName);
-    localStorage.setItem('bridge_lang_code', langCode);
 
     syncLanguageUI(langName);
 
-    // If chat has only the welcome greeting, re-localize it
+    // If chat has only the welcome greeting, re-localize it immediately
     if (STATE.chatHistory.length <= 1) {
       initChatWelcomeGreeting(true);
     }
   }
 
-  function selectLanguageCard(langName, langCode) {
-    setLanguage(langName, langCode);
+  function selectLanguageCard(langName) {
+    setLanguage(langName);
   }
 
   function syncLanguageUI(langName) {
-    // Quick pills in topbar
-    document.querySelectorAll('.lang-pill').forEach(pill => {
-      const txt = pill.innerText.toLowerCase();
-      const match = (langName === 'English' && txt.includes('english')) ||
-                    (langName === 'Swahili' && txt.includes('kiswahili')) ||
-                    (langName === 'Hindi' && txt.includes('हिन्दी')) ||
-                    (langName === 'French' && txt.includes('français')) ||
-                    (langName === 'Pidgin' && txt.includes('pidgin'));
-      pill.classList.toggle('active', match);
-    });
+    // 1. Topbar Trigger Label
+    const topbarLabel = document.getElementById('topbarLangLabel');
+    if (topbarLabel) topbarLabel.innerText = langName;
 
-    // Language tiles in Languages tab
-    document.querySelectorAll('.lang-tile').forEach(tile => {
-      if (tile.id === `lang-tile-${langName}`) {
-        tile.classList.add('active');
-        tile.querySelector('.lang-tile-check').innerText = '✓';
-      } else {
-        tile.classList.remove('active');
-        tile.querySelector('.lang-tile-check').innerText = '';
-      }
-    });
+    // 2. Chat Input Badge near chat composer
+    const chatBadgeText = document.getElementById('chatLangBadgeText');
+    if (chatBadgeText) chatBadgeText.innerText = langName;
+
+    // 3. Tab 3 Full View Badges & Button text
+    const viewActiveName = document.getElementById('langViewActiveName');
+    if (viewActiveName) viewActiveName.innerText = langName;
+    const viewBtnTarget = document.getElementById('langViewBtnTargetLang');
+    if (viewBtnTarget) viewBtnTarget.innerText = langName;
+
+    // 4. Update dropdown list and view grid active markers
+    renderDropdownOptions(activeDropdownFilter);
+    renderViewOptions(activeViewFilter);
   }
 
   /* ----------------------------------------------------
@@ -2872,9 +3511,22 @@ Always respond in ${STATE.currentLang}.`;
       Swahili: "Habari! Mimi ni BridgeAI. Nipo hapa kukusaidia kujifunza jinsi ya kutumia simu na intaneti kwa usalama. Je, ungependa kujifunza nini leo? 😊",
       Hindi: "नमस्ते! मैं BridgeAI हूँ। मैं आपको इंटरनेट और स्मार्टफोन का सुरक्षित उपयोग सिखाने आया हूँ। आज आप क्या सीखना चाहते हैं? 😊",
       French: "Bonjour ! Je suis BridgeAI. Je suis là pour vous aider à utiliser Internet en toute sécurité. Que souhaitez-vous apprendre aujourd'hui ? 😊",
-      Pidgin: "How far! I be BridgeAI. I dey here to teach you how to use phone and internet safely without fear. Wetin you wan learn today? 😊"
+      Spanish: "¡Hola! Soy BridgeAI. Estoy aquí para ayudarte a aprender a usar internet y tu teléfono con total seguridad. ¿Qué te gustaría aprender hoy? 😊",
+      Portuguese: "Olá! Eu sou o BridgeAI. Estou aqui para ajudar você a usar a internet e o celular com segurança. O que você gostaria de aprender hoje? 😊",
+      Arabic: "مرحباً! أنا BridgeAI. أنا هنا لمساعدتك في تعلم استخدام الإنترنت والهاتف الذكي بأمان. ماذا تحب أن تتعلم اليوم؟ 😊",
+      "Mandarin Chinese": "你好！我是 BridgeAI。我在这里帮助您安全地学习使用智能手机和互联网。今天您想了解什么？😊",
+      "Cantonese": "你好！我係 BridgeAI。我喺度幫你學習安全使用智能手機同互聯網。今日你想學啲咩？😊",
+      Bengali: "নমস্কার! আমি BridgeAI। নিরাপদে ইন্টারনেট এবং স্মার্টফোন ব্যবহার শিখতে আমি আপনাকে সাহায্য করব। আজ আপনি কী জানতে চান? 😊",
+      Urdu: "ہیلو! میں BridgeAI ہوں۔ میں آپ کو انٹرنیٹ اور اسمارٹ فون محفوظ طریقے سے استعمال کرنا سکھانے کے لیے حاضر ہوں۔ آج آپ کیا سیکھنا چاہتے ہیں؟ 😊",
+      "Nigerian Pidgin": "How far! I be BridgeAI. I dey here to teach you how to use phone and internet safely without fear. Wetin you wan learn today? 😊",
+      Yoruba: "Báwo ni! Èmi ni BridgeAI. Mo wà níbí láti kọ́ ọ bí a ṣe ń lo intanẹ́ẹ̀tì ní ààbò. Kí lo fẹ́ kọ́ lónìí? 😊",
+      Hausa: "Sannu! Ni ne BridgeAI. Ina nan domin in taimake ka koyon yadda ake amfani da intanet cikin aminci. Me kake son koya a yau? 😊",
+      Igbo: "Kedu! Abụ m BridgeAI. Anọ m ebe a iji nyere gị aka mụta ka e si eji ekwentị na intaneti eme ihe n'enweghị nsogbu. Kedu ihe ị chọrọ ịmụta taa? 😊",
+      Amharic: "ሰላም! እኔ BridgeAI ነኝ። ኢንተርኔትን በደህና እንዴት እንደሚጠቀሙ ላስተምርዎት ዝግጁ ነኝ። ዛሬ ምን መማር ይፈልጋሉ? 😊",
+      Somali: "Kala soco! Waxaan ahay BridgeAI. Waxaan halkan u joogaa inaan kaa caawiyo barashada sida loo isticmaalo taleefanka iyo internetka. Maxaad jeclaan lahayd inaad barato maanta? 😊",
+      Zulu: "Sawubona! Ngingu-BridgeAI. Ngilapha ukukusiza ufunde ukusebenzisa i-inthanethi ngokuphepha. Ungathanda ukufundani namhlanje? 😊"
     };
-    return greetings[STATE.currentLang] || greetings.English;
+    return greetings[STATE.currentLang] || `Hello! I am BridgeAI. I am ready to tutor you in ${STATE.currentLang}. Ask me any question about your phone, apps, or staying safe online! 😊`;
   }
 
   function initChatWelcomeGreeting(forceReset = false) {
